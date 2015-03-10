@@ -1,4 +1,5 @@
 # Homepage (Root path)
+require "sinatra/json"
 get '/' do
   erb :index
 end
@@ -11,6 +12,8 @@ end
 # Deleting a contact
 
 get '/contacts' do
+	@contacts = Contact.all
+	json @contacts
 	# supply json data
 	# display a list of all contacts
 end
@@ -20,6 +23,8 @@ get '/contacts/new' do
 end
 
 post '/contacts' do
+	Contact.create(firstname: params[:firstname], lastname: params[:lastname], email: params[:email], phone_number: params[:phone_number])
+	redirect '/'
 	# creates a new contact via POST
 end
 
