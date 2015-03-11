@@ -10,9 +10,9 @@ $(document).ready(function() {
     		console.log(response);  
     		$.each(response, function(i, contact_info){
     			$('.contacts-container').append('<p>' + contact_info['firstname'] + ' ' + contact_info['lastname'] + '</p>');
-    		})  		
-    	})
-    })
+    		});  		
+    	});
+    });
 
     $("#submit-button").on('click', function(event) {
     	event.preventDefault();
@@ -25,24 +25,28 @@ $(document).ready(function() {
     		url: '/contacts',
     		method: 'POST',
     		data: newContact
-    	})
-    })
+    	});
+    });
 
     var searchButton = $('#search-button');
     searchButton.on('click', function(event) {
     	event.preventDefault();
-    	var idValue = $('#search-id').val();
+    	var objectId = {}
+    	objectId.id = $('#search-id').val();
     	$.ajax({
-    		url: '/contacts/:id',
+    		url: '/contacts/id',
     		method: 'GET',
-    		data: idValue,
-    		success: someFunction,
-    		dataType: ,
-    		contentType:
+    		data: objectId,
 
-    	})
-
-    })
+    		success: displayContact,
+    		dataType: 'json',
+    		contentType: 'application/json;charset=utf-8'
+    	});
+    	displayContact(objectId);
+    });
+    	function displayContact(contact) {
+    		$('.search-results').append('<p>' + contact['firstname'] + ' ' + contact['lastname'] + '</p>');
+    	};
 });
 
 
