@@ -18,17 +18,14 @@ get '/contacts' do
 	# display a list of all contacts
 end
 
-get '/contacts/new' do
-	# returns an html form to create a new contact
-end
-
 post '/contacts' do
 	Contact.create(firstname: params[:firstname], lastname: params[:lastname], email: params[:email], phone_number: params[:phone_number])
-	redirect '/'
 	# creates a new contact via POST
 end
 
 get '/contacts/:id' do
+	@contact_found = Contact.find(params[:id])
+	json @contact_found
 	# displays a specific contact
 end
 
