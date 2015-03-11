@@ -40,7 +40,7 @@ $(document).ready(function() {
     		dataType: 'json',
     		contentType: 'application/json;charset=utf-8'
     	});
-    	displayContact(response);
+    	
     });
     	function displayContact(contact) {
     		$('.search-results').append('<p>' + contact['firstname'] + ' ' + contact['lastname'] + '</p>');
