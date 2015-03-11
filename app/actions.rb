@@ -26,10 +26,10 @@ end
 get '/contacts/id' do
 	# needs an id:
 	# once it has an id, do this:
-	binding.pry
+	# binding.pry
 	@contact_found = Contact.find(params[:id])
 	json @contact_found
-	binding.pry
+	# binding.pry
 	# displays a specific contact
 end
 
