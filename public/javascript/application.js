@@ -31,18 +31,16 @@ $(document).ready(function() {
     var searchButton = $('#search-button');
     searchButton.on('click', function(event) {
     	event.preventDefault();
-    	var objectId = {}
-    	objectId.id = $('#search-id').val();
+    	var contactId = $('#search-id').val();
     	$.ajax({
-    		url: '/contacts/id',
+    		url: '/contacts/' + contactId,
     		method: 'GET',
-    		data: objectId,
 
     		success: displayContact,
     		dataType: 'json',
     		contentType: 'application/json;charset=utf-8'
     	});
-    	displayContact(objectId);
+    	displayContact(response);
     });
     	function displayContact(contact) {
     		$('.search-results').append('<p>' + contact['firstname'] + ' ' + contact['lastname'] + '</p>');

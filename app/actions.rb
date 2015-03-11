@@ -23,13 +23,13 @@ post '/contacts' do
 	# creates a new contact via POST
 end
 
-get '/contacts/id' do
+get '/contacts/:id' do
 	# needs an id:
 	# once it has an id, do this:
-	# binding.pry
+
 	@contact_found = Contact.find(params[:id])
 	json @contact_found
-	# binding.pry
+	
 	# displays a specific contact
 end
 
